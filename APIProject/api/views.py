@@ -10,8 +10,8 @@ from rest_framework.permissions import IsAuthenticated
 class ArticleViewSet(viewsets.ModelViewSet):
     queryset = Article.objects.all()
     serializer_class = ArticleSerializer
-    permission_classes=[IsAuthenticated]
-    authentication_classes = (TokenAuthentication,)
+    # permission_classes=[IsAuthenticated]
+    # authentication_classes = (TokenAuthentication,)
 
 class UserViewSet(viewsets.ModelViewSet):
      queryset = User.objects.all()
