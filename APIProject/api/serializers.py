@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from .models import Article
+from .models import Article,Images
 from django.contrib.auth.models import User
 from rest_framework.authtoken.views import Token
 
@@ -7,6 +7,11 @@ class ArticleSerializer(serializers.ModelSerializer):
     class Meta:
         model=Article
         fields=['id','title','description']
+
+class ImageSerializer(serializers.ModelSerializer):
+    class Meta:
+        model=Images
+        fields=['id','url','user']        
 
 class UserSerializer(serializers.ModelSerializer):
     class Meta:

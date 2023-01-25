@@ -1,6 +1,6 @@
 from django.shortcuts import render,HttpResponse
-from .models import Article
-from .serializers import ArticleSerializer,UserSerializer
+from .models import Article,Images
+from .serializers import ArticleSerializer,UserSerializer,ImageSerializer
 from rest_framework import viewsets 
 from rest_framework.authentication import TokenAuthentication
 from django.contrib.auth.models import User
@@ -10,8 +10,16 @@ from rest_framework.permissions import IsAuthenticated
 class ArticleViewSet(viewsets.ModelViewSet):
     queryset = Article.objects.all()
     serializer_class = ArticleSerializer
-    # permission_classes=[IsAuthenticated]
-    # authentication_classes = (TokenAuthentication,)
+    permission_classes=[IsAuthenticated]
+    authentication_classes = (TokenAuthentication,)
+
+class ImagesViewSet(viewsets.ModelViewSet):
+    serializer_class=ImageSerializer
+    def get_queryset(self):
+        user=self.request.user
+        return Images.objects.filter(user=user)
+    permission_classes=[IsAuthenticated]
+    authentication_classes = (TokenAuthentication,)        
 
 class UserViewSet(viewsets.ModelViewSet):
      queryset = User.objects.all()
