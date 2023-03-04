@@ -31,7 +31,6 @@ class UserViewSet(viewsets.ModelViewSet):
 
 
 
-
 '''
 class ArticleList(generics.GenericAPIView,mixins.ListModelMixin,
                 mixins.CreateModelMixin):
